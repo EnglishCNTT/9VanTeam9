@@ -39,6 +39,12 @@ export const routes = {
     title: "teacherHomePage",
     description: "Teacher Home Page",
   },
+  teacherProfile: {
+    path: "/teacher/profile",
+    component: (props) => injectProps(props, HomePageTeacher),
+    title: "teacherProfile",
+    description: "Teacher Profile Page",
+  },
 };
 
 export const paths = [
@@ -71,5 +77,11 @@ export const paths = [
     to: routes.teacherHomePage.path,
     name: routes.teacherHomePage.title,
     key: "teacherHomePage",
+  },
+  {
+    category: "teacherProfile",
+    to: routes.teacherProfile.path,
+    name: routes.teacherProfile.title,
+    key: "teacherProfile",
   },
 ];
