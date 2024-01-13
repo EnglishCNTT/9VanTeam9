@@ -12,6 +12,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import logo from "../../assets/images/9vanlogo.png";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
 const pages = ["Lớp học", "Đề bài", "Bài tập", "Giới thiệu"];
 const settings = ["Hồ sơ", "Đăng xuất"];
@@ -37,26 +39,9 @@ function HeaderBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            9Văn
-          </Typography>
+      <Container maxWidth="xl" className="bg-white text-slate-900">
+        <Toolbar disableGutters className="">
+          <img src={logo} alt="" className="mr-10"/>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -71,6 +56,7 @@ function HeaderBar() {
             </IconButton>
             <Menu
               id="menu-appbar"
+              className="text-black"
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -88,14 +74,18 @@ function HeaderBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  className="text-black"
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
+          {/* <img src={logo} alt="" /> */}
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -112,18 +102,22 @@ function HeaderBar() {
             }}
           >
             9Văn
-          </Typography>
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "black", display: "block" }}
               >
                 {page}
               </Button>
             ))}
           </Box>
+
+          <NotificationsActiveIcon
+            sx={{ display: { xs: "none", md: "flex" }, mr: 2 }}
+          />
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
