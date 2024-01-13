@@ -4,6 +4,7 @@ import ChooseRole from "./features/role/ChooseRole";
 import HomePageStudent from "./features/student/HomePageStudent";
 import HomePageTeacher from "./features/teacher/HomePageTeacher";
 
+
 const injectProps = (props, Component) => {
   return <Component {...props} />;
 };
@@ -16,7 +17,7 @@ export const routes = {
     description: "Choose Role Page",
   },
   login: {
-    path: "/login",
+    path: "/",
     component: (props) => injectProps(props, Login),
     title: "login",
     description: "Login Page",
