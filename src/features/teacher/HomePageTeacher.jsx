@@ -31,7 +31,25 @@ function createData(lop_hoc, cho_cham, da_cham, da_giao, ti_le_lam_bai) {
 
 const rows = Array(10)
   .fill()
-  .map((item) => createData("Lớp 9A1 - Văn giáo viên Phan Huy Thái", 159, 6.0, 24, 69.96));
+  .map((item) => {
+    let da_giao = Math.floor(Math.random() * 101);
+    let da_cham = Math.floor(Math.random() * 100);
+
+    while (da_giao <= da_cham) {
+      da_giao = Math.floor(Math.random() * 101);
+      da_cham = Math.floor(Math.random() * 100);
+    }
+
+    const cho_cham = da_giao - da_cham;
+    const ti_le_lam_bai = ((da_cham / da_giao) * 100).toFixed(2);
+    return createData(
+      "Lớp 9A1 - Văn giáo viên Phan Huy Thái",
+      cho_cham,
+      da_cham,
+      da_giao,
+      ti_le_lam_bai
+    );
+  });
 
 const HomePageTeacher = () => {
   return (
