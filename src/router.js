@@ -5,6 +5,7 @@ import HomePageStudent from "./features/student/HomePageStudent";
 import ClassPageTeacher from "./features/teacher/ClassPageTeacher";
 import HomePageTeacher from "./features/teacher/HomePageTeacher";
 import ListStudentPage from "./features/teacher/ListStudentPage";
+import StudentProfile from "./features/student/StudentProfile";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -59,6 +60,12 @@ export const routes = {
     title: "teacherProfile",
     description: "Teacher Profile Page",
   },
+  studentProfile: {
+    path: "/student/profile",
+    component: (props) => injectProps(props, StudentProfile),
+    title: "studentProfile",
+    description: "Student Profile Page",
+  },
 };
 
 export const paths = [
@@ -109,5 +116,11 @@ export const paths = [
     to: routes.teacherProfile.path,
     name: routes.teacherProfile.title,
     key: "teacherProfile",
+  },
+  {
+    category: "studentProfile",
+    to: routes.studentProfile.path,
+    name: routes.studentProfile.title,
+    key: "studentProfile",
   },
 ];

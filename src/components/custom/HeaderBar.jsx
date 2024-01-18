@@ -14,13 +14,15 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../assets/images/9vanlogo.png";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Lớp học", "Đề bài", "Bài tập", "Giới thiệu"];
 const settings = ["Hồ sơ", "Đăng xuất"];
 
-function HeaderBar() {
+function HeaderBar(props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,11 +39,20 @@ function HeaderBar() {
     setAnchorElUser(null);
   };
 
+  const handleNavigate = (option) => {
+    if (option === "Đăng xuất") navigate("/");
+    else {
+      if (props?.role === "Student") navigate("/student/profile");
+      else if (props?.role === "Teacher") navigate("/teacher/profile");
+      else navigate("/parent/profile");
+    }
+  };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl" className="bg-white text-slate-900">
         <Toolbar disableGutters className="">
-          <img src={logo} alt="" className="mr-10"/>
+          <img src={logo} alt="" className="mr-10" />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -142,7 +153,7 @@ function HeaderBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting} onClick={() => handleNavigate(setting)}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
