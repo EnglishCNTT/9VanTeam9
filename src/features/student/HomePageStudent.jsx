@@ -14,6 +14,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import joinclass from "../../assets/images/joinclass.png";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -39,6 +40,7 @@ const rows = [
 ];
 
 const HomePageStudent = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -71,7 +73,11 @@ const HomePageStudent = () => {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 hover={true}
               >
-                <TableCell component="th" scope="row">
+                <TableCell
+                  component="th"
+                  scope="row"
+                  onClick={() => navigate("/student/exercise")}
+                >
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.unmake}</TableCell>

@@ -13,22 +13,33 @@ import Tab from "@mui/material/Tab";
 import HeaderBar from "../../components/custom/HeaderBar";
 import { useNavigate } from "react-router-dom";
 
-function createData(lop_hoc, nam, mo_ta) {
-  return { lop_hoc, nam, mo_ta };
+function createData() {
+  const ten_de_bai = [
+    "Đề thi số 1",
+    "Đề thi kiểm tra cuối kỳ",
+    "Bài tập ôn tập số 3",
+  ];
+
+  const bia_sach = ["Bộ sách Văn 6", "Bộ sách Toán 7", "Bộ sách Sinh học 8"];
+
+  const lan_luyen_cuoi = ["1", "2", "3"];
+
+  const randomTenDeBai =
+    ten_de_bai[Math.floor(Math.random() * ten_de_bai.length)];
+  const randomBiaSach = bia_sach[Math.floor(Math.random() * bia_sach.length)];
+  const randomLanLuyenCuoi =
+    lan_luyen_cuoi[Math.floor(Math.random() * lan_luyen_cuoi.length)];
+
+  return {
+    ten_de_bai: randomTenDeBai,
+    bia_sach: randomBiaSach,
+    lan_luyen_cuoi: randomLanLuyenCuoi,
+  };
 }
 
-const rows = Array(10)
-  .fill()
-  .map((item) => {
-    const currentYear = new Date().getFullYear();
+const rows = Array(10).fill().map(createData);
 
-    const lop_hoc = "Lớp 9A1 - Văn giáo viên Phan Huy Thái";
-    const nam = Math.floor(Math.random() * (currentYear - 2016 + 1)) + 2016;
-    const mo_ta = "Lớp luyện văn ôn thi vào 10";
-    return createData(lop_hoc, nam, mo_ta);
-  });
-
-const TableClassTeacher = () => {
+const TableTopicStudent = () => {
   const navigate = useNavigate();
   return (
     <TableContainer component={Paper} className="mt-4">
@@ -36,9 +47,9 @@ const TableClassTeacher = () => {
         <TableHead>
           <TableRow>
             <TableCell align="center">STT</TableCell>
-            <TableCell align="left">Lớp học</TableCell>
-            <TableCell align="right">Năm</TableCell>
-            <TableCell align="right">Mô tả</TableCell>
+            <TableCell align="left">Đề bài</TableCell>
+            <TableCell align="right">Bộ sách - Bài</TableCell>
+            <TableCell align="right">Lần luyện cuối</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,16 +60,11 @@ const TableClassTeacher = () => {
               hover={true}
             >
               <TableCell align="center">{index + 1}</TableCell>
-              <TableCell
-                component="th"
-                scope="row"
-                align="left"
-                onClick={() => navigate("/teacher/class/liststudent")}
-              >
-                {row.lop_hoc}
+              <TableCell component="th" scope="row" align="left">
+                {row.ten_de_bai}
               </TableCell>
-              <TableCell align="right">{row.nam}</TableCell>
-              <TableCell align="right">{row.mo_ta}</TableCell>
+              <TableCell align="right">{row.bia_sach}</TableCell>
+              <TableCell align="right">{row.lan_luyen_cuoi}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -67,7 +73,7 @@ const TableClassTeacher = () => {
   );
 };
 
-const ClassPageTeacher = () => {
+const StudentTopic = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -82,16 +88,16 @@ const ClassPageTeacher = () => {
         <Box className="-mx-6 px-6">
           <Box sx={{ width: "100%" }}>
             <Tabs value={value} onChange={handleChange}>
-              <Tab label="Đang hoạt động" />
-              <Tab label="Đã kết thúc" />
+              <Tab label="Tự luyện đề chung" />
+              <Tab label="Tự luyện đề riêng" />
             </Tabs>
           </Box>
 
-          <TableClassTeacher />
+          <TableTopicStudent />
         </Box>
       </Container>
     </>
   );
 };
 
-export default ClassPageTeacher;
+export default StudentTopic;

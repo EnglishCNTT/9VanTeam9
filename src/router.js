@@ -6,6 +6,12 @@ import ClassPageTeacher from "./features/teacher/ClassPageTeacher";
 import HomePageTeacher from "./features/teacher/HomePageTeacher";
 import ListStudentPage from "./features/teacher/ListStudentPage";
 import StudentProfile from "./features/student/StudentProfile";
+import StudentExam from "./features/student/StudentExam";
+import ParentProfile from "./features/parent/ParentProfile";
+import TeacherProfile from "./features/teacher/TeacherProfile";
+import TeacherExercise from "./features/teacher/TeacherExercise";
+import TeacherTopic from "./features/teacher/TeacherTopic";
+import StudentTopic from "./features/student/StudentTopic";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -29,6 +35,12 @@ export const routes = {
     component: (props) => injectProps(props, HomePageStudent),
     title: "studentHomePage",
     description: "Student Home Page",
+  },
+  studentClassPage: {
+    path: "/student/class",
+    component: (props) => injectProps(props, HomePageStudent),
+    title: "studentClassPage",
+    description: "Student Class Page",
   },
   parentHomePage: {
     path: "/parent",
@@ -56,7 +68,7 @@ export const routes = {
   },
   teacherProfile: {
     path: "/teacher/profile",
-    component: (props) => injectProps(props, HomePageTeacher),
+    component: (props) => injectProps(props, TeacherProfile),
     title: "teacherProfile",
     description: "Teacher Profile Page",
   },
@@ -65,6 +77,36 @@ export const routes = {
     component: (props) => injectProps(props, StudentProfile),
     title: "studentProfile",
     description: "Student Profile Page",
+  },
+  studentExam: {
+    path: "/student/exercise",
+    component: (props) => injectProps(props, StudentExam),
+    title: "studentExam",
+    description: "Student Exam Page",
+  },
+  parentProfile: {
+    path: "/parent/profile",
+    component: (props) => injectProps(props, ParentProfile),
+    title: "parentProfile",
+    description: "Parent Profile Page",
+  },
+  teacherExam: {
+    path: "/teacher/exercise",
+    component: (props) => injectProps(props, TeacherExercise),
+    title: "teacherExam",
+    description: "Teacher Exam Page",
+  },
+  teacherTopic: {
+    path: "/teacher/topic",
+    component: (props) => injectProps(props, TeacherTopic),
+    title: "teacherTopic",
+    description: "Teacher Topic Page",
+  },
+  studentTopic: {
+    path: "/student/topic",
+    component: (props) => injectProps(props, StudentTopic),
+    title: "studentTopic",
+    description: "Student Topic Page",
   },
 };
 
@@ -122,5 +164,35 @@ export const paths = [
     to: routes.studentProfile.path,
     name: routes.studentProfile.title,
     key: "studentProfile",
+  },
+  {
+    category: "studentExam",
+    to: routes.studentExam.path,
+    name: routes.studentExam.title,
+    key: "studentExam",
+  },
+  {
+    category: "parentProfile",
+    to: routes.parentProfile.path,
+    name: routes.parentProfile.title,
+    key: "parentProfile",
+  },
+  {
+    category: "teacherExam",
+    to: routes.teacherExam.path,
+    name: routes.teacherExam.title,
+    key: "teacherExam",
+  },
+  {
+    category: "teacherTopic",
+    to: routes.teacherTopic.path,
+    name: routes.teacherTopic.title,
+    key: "teacherTopic",
+  },
+  {
+    category: "studentTopic",
+    to: routes.studentTopic.path,
+    name: routes.studentTopic.title,
+    key: "studentTopic",
   },
 ];
