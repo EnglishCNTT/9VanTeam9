@@ -51,7 +51,10 @@ const TableClassTeacher = () => {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+            <TableRow
+              key={index}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
               <TableCell align="center">{index + 1}</TableCell>
               <TableCell component="th" scope="row" align="left">
                 {row.hoc_sinh}
@@ -76,10 +79,10 @@ const ListStudentPage = () => {
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar role="teacher" />
 
       <Container maxWidth={"xl"} className="my-6">
-        <Box className="-mx-6 ">
+        <Box className="-mx-6 px-6">
           <Typography variant="h5" className="text-base" gutterBottom>
             Danh sách học sinh - Lớp 9A1 - Văn giáo viên Phan Huy Thái
           </Typography>

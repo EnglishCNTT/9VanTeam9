@@ -11,13 +11,17 @@ import HeaderBar from "../../components/custom/HeaderBar";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgress";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
+import { useNavigate } from "react-router-dom";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
   borderRadius: 5,
   [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 5,
@@ -52,12 +56,13 @@ const rows = Array(10)
   });
 
 const HomePageTeacher = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <HeaderBar />
+      <HeaderBar role="teacher" />
 
       <Container maxWidth={"xl"} className="my-6">
-        <Box className="-mx-6">
+        <Box className="-mx-6 px-6">
           <Typography variant="h5" className="text-base" gutterBottom>
             Tổng quan các lớp đang hoạt động
           </Typography>
@@ -76,9 +81,18 @@ const HomePageTeacher = () => {
               </TableHead>
               <TableBody>
                 {rows.map((row, index) => (
-                  <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+                  <TableRow
+                    key={index}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    hover={true}
+                  >
                     <TableCell align="center">{index + 1}</TableCell>
-                    <TableCell component="th" scope="row" align="left">
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      align="left"
+                      onClick={() => navigate("/teacher/class")}
+                    >
                       {row.lop_hoc}
                     </TableCell>
                     <TableCell align="right">{row.cho_cham}</TableCell>
@@ -86,7 +100,10 @@ const HomePageTeacher = () => {
                     <TableCell align="right">{row.da_giao}</TableCell>
                     <TableCell align="right">
                       {row.ti_le_lam_bai} %
-                      <BorderLinearProgress variant="determinate" value={row.ti_le_lam_bai} />
+                      <BorderLinearProgress
+                        variant="determinate"
+                        value={row.ti_le_lam_bai}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
