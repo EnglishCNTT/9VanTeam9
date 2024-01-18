@@ -49,12 +49,7 @@ const TableClassTeacher = () => {
               hover={true}
             >
               <TableCell align="center">{index + 1}</TableCell>
-              <TableCell
-                component="th"
-                scope="row"
-                align="left"
-                onClick={() => navigate("/teacher/class/liststudent")}
-              >
+              <TableCell component="th" scope="row" align="left">
                 {row.lop_hoc}
               </TableCell>
               <TableCell align="right">{row.nam}</TableCell>
@@ -67,7 +62,7 @@ const TableClassTeacher = () => {
   );
 };
 
-const ClassPageTeacher = () => {
+const TeacherExercise = () => {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -82,8 +77,9 @@ const ClassPageTeacher = () => {
         <Box className="-mx-6 px-6">
           <Box sx={{ width: "100%" }}>
             <Tabs value={value} onChange={handleChange}>
-              <Tab label="Đang hoạt động" />
-              <Tab label="Đã kết thúc" />
+              <Tab label="Bài chờ chấm" />
+              <Tab label="Bài đã giao" />
+              <Tab label="Bài đã chấm" />
             </Tabs>
           </Box>
 
@@ -94,4 +90,4 @@ const ClassPageTeacher = () => {
   );
 };
 
-export default ClassPageTeacher;
+export default TeacherExercise;

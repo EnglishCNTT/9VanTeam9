@@ -55,7 +55,7 @@ function HeaderBar(props) {
     if (page === "Lớp học") navigate(`/${props?.role}/class`);
     else if (page === "Đề bài") navigate(`/${props?.role}/topic`);
     else if (page === "Bài tập") navigate(`/${props?.role}/exercise`);
-    else navigate(`/${props?.role}/introduce`);
+    else window.open("https://gioithieu.9van.vn/", "_blank");
   };
 
   return (
@@ -63,7 +63,7 @@ function HeaderBar(props) {
       position="static"
       sx={{
         boxShadow: "none",
-        borderBottom: "0.2px solid gray"
+        borderBottom: "0.2px solid gray",
       }}
     >
       <Container maxWidth="xl" className="bg-white text-slate-900">

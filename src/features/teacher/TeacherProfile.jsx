@@ -7,7 +7,7 @@ import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ArrowForward, Logout, Save, SwapHoriz } from "@mui/icons-material";
-import childrenrole from "../../assets/images/chidrenrole.png";
+import teacherrole from "../../assets/images/teacherrole.png";
 import { useNavigate } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-const StudentProfile = () => {
+const TeacherProfile = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -102,27 +102,6 @@ const StudentProfile = () => {
                   />
                 </Grid>
                 <Grid item xs={12} md={12}>
-                  <span className="font-semibold">Email phụ huynh</span>
-                  <TextField
-                    id="outlined-basic"
-                    defaultValue="
-                    vungocanh@gmail.com"
-                    variant="outlined"
-                    fullWidth
-                    class="mt-2"
-                    size="small"
-                  />
-                  <TextField
-                    id="outlined-basic"
-                    defaultValue="
-                    vungocanh@gmail.com"
-                    variant="outlined"
-                    fullWidth
-                    class="mt-2"
-                    size="small"
-                  />
-                </Grid>
-                <Grid item xs={12} md={12}>
                   <Button
                     startIcon={<Save />}
                     variant="contained"
@@ -158,8 +137,8 @@ const StudentProfile = () => {
               >
                 <span className="text-xl font-semibold ">Vai trò hiện tại</span>
                 <div className="flex flex-col justify-center items-center">
-                  <img src={childrenrole} alt="" className="m-auto mt-10" />
-                  <span className="text-lg font-medium mt-2">Học sinh</span>
+                  <img src={teacherrole} alt="" className="m-auto mt-10" />
+                  <span className="text-lg font-medium mt-2">Giáo viên</span>
                 </div>
 
                 <Button
@@ -234,4 +213,4 @@ const StudentProfile = () => {
   );
 };
 
-export default StudentProfile;
+export default TeacherProfile;
