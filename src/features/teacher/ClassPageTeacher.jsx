@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import HeaderBar from "../../components/custom/HeaderBar";
+import { useNavigate } from "react-router-dom";
 
 function createData(lop_hoc, nam, mo_ta) {
   return { lop_hoc, nam, mo_ta };
@@ -28,6 +29,7 @@ const rows = Array(10)
   });
 
 const TableClassTeacher = () => {
+  const navigate = useNavigate();
   return (
     <TableContainer component={Paper} className="mt-4">
       <Table aria-label="simple table">
@@ -41,9 +43,18 @@ const TableClassTeacher = () => {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <TableRow key={index} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+            <TableRow
+              key={index}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              hover={true}
+            >
               <TableCell align="center">{index + 1}</TableCell>
-              <TableCell component="th" scope="row" align="left">
+              <TableCell
+                component="th"
+                scope="row"
+                align="left"
+                onClick={() => navigate("/teacher/class/liststudent")}
+              >
                 {row.lop_hoc}
               </TableCell>
               <TableCell align="right">{row.nam}</TableCell>
@@ -65,7 +76,7 @@ const ClassPageTeacher = () => {
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar role="teacher" />
 
       <Container maxWidth={"xl"} className="my-6">
         <Box className="-mx-6 ">

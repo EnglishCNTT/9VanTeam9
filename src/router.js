@@ -49,7 +49,7 @@ export const routes = {
     description: "Teacher Class Page",
   },
   teacherListStudentPage: {
-    path: "/teacher/class/list_student",
+    path: "/teacher/class/liststudent",
     component: (props) => injectProps(props, ListStudentPage),
     title: "teacherListStudentPage",
     description: "Teacher List Student Page",

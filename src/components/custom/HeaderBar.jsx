@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import logo from "../../assets/images/9vanlogo.png";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { useNavigate } from "react-router-dom";
@@ -42,17 +41,42 @@ function HeaderBar(props) {
   const handleNavigate = (option) => {
     if (option === "Đăng xuất") navigate("/");
     else {
-      if (props?.role === "Student") navigate("/student/profile");
-      else if (props?.role === "Teacher") navigate("/teacher/profile");
+      if (props?.role === "student") navigate("/student/profile");
+      else if (props?.role === "teacher") navigate("/teacher/profile");
       else navigate("/parent/profile");
     }
   };
+  const handleClickLogo = (option) => {
+    if (props?.role === "student") navigate("/student");
+    else if (props?.role === "teacher") navigate("/teacher");
+    else if (props?.role === "parent") navigate("/parent");
+  };
+  const handleNavMenu = (page) => {
+    if (page === "Lớp học") navigate(`/${props?.role}/class`);
+    else if (page === "Đề bài") navigate(`/${props?.role}/topic`);
+    else if (page === "Bài tập") navigate(`/${props?.role}/exercise`);
+    else navigate(`/${props?.role}/introduce`);
+  };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        boxShadow: "none",
+        borderBottom: "0.2px solid gray"
+      }}
+    >
       <Container maxWidth="xl" className="bg-white text-slate-900">
         <Toolbar disableGutters className="">
-          <img src={logo} alt="" className="mr-10" />
+          <img
+            src={logo}
+            alt=""
+            className="mr-10"
+            onClick={handleClickLogo}
+            style={{
+              cursor: "pointer",
+            }}
+          />
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -85,11 +109,7 @@ function HeaderBar(props) {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  className="text-black"
-                >
+                <MenuItem key={page} className="text-black">
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -118,8 +138,8 @@ function HeaderBar(props) {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "black", display: "block" }}
+                onClick={() => handleNavMenu(page)}
               >
                 {page}
               </Button>
