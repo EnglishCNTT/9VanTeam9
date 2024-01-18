@@ -2,8 +2,9 @@ import Login from "./features/auth/Login";
 import HomePageParent from "./features/parent/HomePageParent";
 import ChooseRole from "./features/role/ChooseRole";
 import HomePageStudent from "./features/student/HomePageStudent";
+import ClassPageTeacher from "./features/teacher/ClassPageTeacher";
 import HomePageTeacher from "./features/teacher/HomePageTeacher";
-
+import ListStudentPage from "./features/teacher/ListStudentPage";
 
 const injectProps = (props, Component) => {
   return <Component {...props} />;
@@ -39,6 +40,18 @@ export const routes = {
     component: (props) => injectProps(props, HomePageTeacher),
     title: "teacherHomePage",
     description: "Teacher Home Page",
+  },
+  teacherClassPage: {
+    path: "/teacher/class",
+    component: (props) => injectProps(props, ClassPageTeacher),
+    title: "teacherClassPage",
+    description: "Teacher Class Page",
+  },
+  teacherListStudentPage: {
+    path: "/teacher/class/list_student",
+    component: (props) => injectProps(props, ListStudentPage),
+    title: "teacherListStudentPage",
+    description: "Teacher List Student Page",
   },
   teacherProfile: {
     path: "/teacher/profile",
@@ -78,6 +91,18 @@ export const paths = [
     to: routes.teacherHomePage.path,
     name: routes.teacherHomePage.title,
     key: "teacherHomePage",
+  },
+  {
+    category: "teacherClassPage",
+    to: routes.teacherClassPage.path,
+    name: routes.teacherClassPage.title,
+    key: "teacherClassPage",
+  },
+  {
+    category: "teacherListStudentPage",
+    to: routes.teacherListStudentPage.path,
+    name: routes.teacherListStudentPage.title,
+    key: "teacherListStudentPage",
   },
   {
     category: "teacherProfile",
